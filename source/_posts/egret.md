@@ -7,55 +7,6 @@ categories:
 description: egret入门
 ---
 
-最近，空下来准备研究一下用egret来做动画和游戏。
-
-# egret是什么？
-Egret是一套HTML5游戏开发解决方案，产品包含Egret Engine，Egret Wing，EgretVS，Res Depot，Texture Merger，TS Conversion，Egret Feather，Egret Inspector，DragonBones，Lakeshore等。而核心产品是Egret Engine，是一个基于TypeScript语言开发的一个HTML5游戏引擎，其余的大多是开发和辅助工具。
-
-# 安装 + 初步调试
-
-参考[官网](https://egret.com/)  step by step进行安装 + 初步调试
-
-# Hello World
-
-**项目创建好之后，我们进入index.html**
-然后找到对应的data-show-fps和data-show-log，然后将其的值改为true，方便我们观察到游戏运行的实时帧率
-![image.png](https://upload-images.jianshu.io/upload_images/3378252-ea4d7e12874844fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-设置完之后，run后会是这样滴~
-
-![image.png](https://upload-images.jianshu.io/upload_images/3378252-5a13c68e5fd79ac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-**接下来，我们来进行Hello World的入门**
-
-找到src下的main.ts
-
-再进入游戏创建场景的函数 createGameScene
-
-加上这么一段：
-
-```js
-       // 创建一个文字对象
-        let text = new egret.TextField();
-        // set xy 
-        text.x = 100;
-        text.y = 100;
-        // set color 
-        text.textColor = 0x888888;
-        // set container 
-        text.text = 'Hello world~ dididi'
-        // add to Main 
-        this.addChild(text);
-```
-
-然后点击`项目 >  构建`，构建成功后，点击`项目 > 调试`
-
-这时候，我们的hello world dididi 就跑出来啦~
-
-![image.png](https://upload-images.jianshu.io/upload_images/3378252-676495ed03bbd81c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-嗯... 是不是很简单，接下来继续
-
 ## 启动
 
 ```CLI
@@ -142,4 +93,39 @@ Egret中容器的深度都是从0开始的，当一个显示对象第一个被�
 实现显示对象深度重置的方法是 `setChildIndex` ，使用方法如下：
 
 `容器.setChildIndex( 显示对象, 新的深度值 );`
+
+### 事件处理机制的原理
+
+event dispatcher
+
+#### 事件流程
+egret 事件机制包括4个步骤：
+
+-  注册侦听器
+- 发送事件
+- 侦听事件
+- 移除侦听器
+
+按照上方面顺序**依次执行**
+
+注册侦听器使用事件发送者的`addEventListener()`将相应的事件分配给侦听器
+
+```js
+public addEventListener(type:string, listener:Function, thisObject:any, useCapture:boolean = false, priority:number = 0)
+```
+
+*   type：事件类型，必选。
+*   listener：用来处理事件的侦听器，必选。
+*   thisObject：作用域，必选，一般填写this。因为TypeScript与JavaScript的this作用域不同，其this指向也会不同。如果不填写this的话，那么编译后的代码会发生错误。 关于this的问题，可以学习JavaScript中的原型链。
+*   useCapture: 确定侦听器是运行于捕获阶段还是运行于冒泡阶段，可选。设置为 true，则侦听器只在捕获阶段处理事件，而不在冒泡阶段处理事件。设置为 false，则侦听器只在冒泡阶段处理事件。
+*   priority： 事件侦听器的优先级，可选。优先级由一个带符号的整数指定。数字越大，优先级越高。优先级为 n 的所有侦听器会在优先级为 n -1 的侦听器之前得到处理。如果两个或更多个侦听器共享相同的优先级，则按照它们的添加顺序进行处理。默认优先级为 0
+
+#### 触摸事件
+
+Egret中有专门的触摸事件类，使用触摸事件时，默认需要打开显示对象的触摸开关，即将`touchEnabled`设置为`true`。
+
+
+
+
+
 
