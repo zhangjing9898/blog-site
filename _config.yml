@@ -84,3 +84,10 @@ deploy:
   type: git
   repo: https://git.coding.net/zhangjing9898/zhangjing9898.git
   branch: master
+
+# 表示站内搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
