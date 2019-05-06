@@ -82,7 +82,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@git.coding.net:zhangjing9898/zhangjing9898.coding.me.git
+  repo: https://git.coding.net/zhangjing9898/zhangjing9898.coding.me.git
   branch: master
 
 live2d:
