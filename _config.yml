@@ -9,7 +9,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://zhangjing9898.coding.me/
+url: http://zhangjing9898.coding.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -82,7 +82,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://git.coding.net/zhangjing9898/zhangjing9898.git
+  repo: git@git.coding.net:zhangjing9898/zhangjing9898.git
   branch: master
 
 live2d:
