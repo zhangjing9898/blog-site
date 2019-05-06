@@ -97,8 +97,8 @@ live2d:
     use: live2d-widget-model-hijiki
   display:
     position: right
-    width: 220
-    height: 440
+    width: 120
+    height: 240
   mobile:
     show: true
   react:
